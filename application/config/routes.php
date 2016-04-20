@@ -40,11 +40,14 @@
 
 $route['default_controller'] = 'users';
 $route['signin'] = 'users/signin';
+$route['process_signin'] = 'users/process_signin';
 $route['register'] = 'users/register';
+$route['process_register'] = 'users/process_register';
 $route['edit'] = 'users/edit';
 $route['confirm_remove'] = 'users/confirm_remove';
 $route['remove'] = 'users/remove';
 $route['logout'] = 'users/logout';
+$route[''] = 'users/index';
 
 
 $route['404_override'] = 'errors/page_missing';

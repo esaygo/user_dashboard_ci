@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>User Dashboard</title>
+  <title>User Dashboard - Signin</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,8 +20,12 @@
      </ul>
    </div>
  </nav>
+ <?php echo validation_errors(); ?>
+ <?php if ($this->session->flashdata('login_error')) {
+   echo $this->session->flashdata('login_error');
+ }?>
  <div class="row">
-   <form class="col s6" action="signin" method="post">
+   <form class="col s6" action="process_signin" method="post">
      <div class="row">
        <div class="input-field col s6">
          <input id="email" type="email" name="email" class="validate">
@@ -34,7 +38,7 @@
          <label for="password">Password</label>
        </div>
      </div>
-     <button class="btn waves-effect waves-light" type="submit" name="action">Sign In
+     <button class="btn waves-effect waves-light" type="submit">Sign In
     <i class="material-icons right">send</i>
   </button>
    </form>

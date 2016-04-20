@@ -2,8 +2,10 @@
 
 class User extends CI_Model {
   function add_user($new_user) {
-      $query = 'INSERT INTO users (first_name, last_name,email, password, created_at,updated_at) VALUES (?,?,?,?,NOW(),NOW())';
-      $values = array($new_user['first_name'], $new_user['last_name'], $new_user['email'], $new_user['password']);
+    // var_dump($new_user);
+    // die();
+      $query = 'INSERT INTO users (first_name, last_name, email, password, created_at,user_level) VALUES (?,?,?,?,NOW(),?)';
+      $values = array($new_user['first_name'], $new_user['last_name'], $new_user['email'], $new_user['password'], "normal");
       return $this->db->query($query, $values);
   }
 
@@ -18,6 +20,11 @@ class User extends CI_Model {
     $user_info = $this->db->query($query, $values)->row_array();
     return $user_info;
 }
+  function get_all_users() {
+    $query = "SELECT * FROM users";
+    $all_users = $this->db->query($query)->result_array();
+    return $all_users;
+  }
 
   }
 

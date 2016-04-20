@@ -20,11 +20,15 @@
      </ul>
    </div>
  </nav>
+ <?php echo validation_errors(); ?>
+ <?php if ($this->session->flashdata('registration_error')) {
+   echo $this->session->flashdata('registration_error');
+ }?>
  <div class="row">
-   <form class="col s6" action="register" method="post">
+   <form class="col s6" action="process_register" method="post">
      <div class="row">
        <div class="input-field col s6">
-         <input id="email" type="email" class="validate">
+         <input id="email" type="email" name="email" class="validate">
          <label for="email">Email</label>
        </div>
      </div>
@@ -48,7 +52,7 @@
          <label for="password">Password Confirmation</label>
        </div>
      </div>
-     <button class="btn waves-effect waves-light" type="submit" name="action">Register
+     <button class="btn waves-effect waves-light" type="submit">Register
     <i class="material-icons right">send</i>
   </button>
    </form>
