@@ -30,9 +30,8 @@
  }?>
  <div class="row">
    <div class="row">
-
      <a onclick="goBack()" id="go_back" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Return to dashboard</a>
-     <script>
+    <script>
      function goBack() {
        window.history.back();
      }

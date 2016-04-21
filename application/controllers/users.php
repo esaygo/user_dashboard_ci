@@ -133,7 +133,7 @@ public function loadDashboard(){
 }
 
 public function editUserProfile() {
-	$this->load->library("form_validation");
+	//$this->load->library("form_validation");
 
 	$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required');
 	$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
@@ -141,21 +141,15 @@ public function editUserProfile() {
 
 	if($this->form_validation->run() === FALSE) {
 	$this->session->set_flashdata("editProfile_error", validation_errors());
-	//and redirect back to edit profile
-	// $loggedin_user = $this->session->userdata('login_info');
-	// $this->User->get_updated_user($loggedin_user['id']);
-	// $this->load->view('edit',['user_info'=>$loggedin_user]);
-
-} else {
+	} else {
 		//UPDATE db
-	 $this->load->model('User');
+	 //$this->load->model('User');
    $new_profile = $this->input->post(NULL, TRUE);
 	 $this->User->updateUserProfile($new_profile);
 	 $loggedin_user = $this->session->userdata('login_info');
  		$this->User->get_updated_user($loggedin_user['id']);
  		$updated_info = $this->User->get_updated_user($loggedin_user['id']);
-		//var_dump($updated_info);
-		//die();
+
  		//UPDATE the session data with new info???
 		$this->session->set_userdata('login_info', $updated_info);
 	}
@@ -164,6 +158,7 @@ public function editUserProfile() {
 
 	$this->User->get_updated_user($updated_session['id']);
 	$this->load->view('edit',['user_info'=>$updated_session]);
+	//redirect($this->uri->uri_string(), 'refresh');
 }
 
 public function editUserPassword() {
@@ -201,6 +196,36 @@ public function editUserDescription() {
 	 //and redirect back to edit profile
  	$loggedin_user = $this->session->userdata('login_info');
  	$this->load->view('edit',['user_info'=>$loggedin_user]);
+
+}
+
+public function adminEditUser($id) {
+	$selected_user = $this->User->get_updated_user($id);
+	$this->load->view('admin_edit',['user_info'=>$selected_user]);
+}
+
+public function adminEditUserInfo() {
+	$edited_by_admin = $this->input->post(NULL, TRUE);
+	$this->User->adminUpdateProfile($edited_by_admin);
+
+	//redirect back to edit user_info (after updating session) - it's not actually the logged in user, but the user admin is editing
+	$loggedin_user = $edited_by_admin['id'];
+	// var_dump($loggedin_user);
+	// die();
+	 $this->User->get_updated_user($loggedin_user);
+	 $updated_info = $this->User->get_updated_user($loggedin_user);
+
+	 //UPDATE the session data with new info???
+	 $this->session->set_userdata('login_info', $updated_info);
+	 $updated_session = $this->session->userdata('login_info');
+
+ 	 $this->User->get_updated_user($updated_session['id']);
+ 	 $this->load->view('admin_edit',['user_info'=>$updated_session]);
+
+
+}
+
+public function adminEditUserPassword() {
 
 }
 

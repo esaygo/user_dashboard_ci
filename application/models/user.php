@@ -35,29 +35,21 @@ class User extends CI_Model {
   function updateUserProfile($new_profile) {
     $query = " UPDATE users SET email='" . $new_profile["email"]. "', first_name='" . $new_profile["first_name"]. "', last_name='".$new_profile["last_name"]."' WHERE id=" .$new_profile["id"]. ";";
     $this->db->query($query);
-    //and redirect back to edit profile
-    $loggedin_user = $this->session->userdata('login_info');
-  	$this->load->view('edit',['user_info'=>$loggedin_user]);
   }
 
   function updateUserPassword($new_profile) {
-    // var_dump($new_profile);
-    // die();
     $query = " UPDATE users SET password='" . $new_profile["password"]. "' WHERE id=" .$new_profile["id"]. ";";
     $this->db->query($query);
-    //and redirect back to edit profile
-    $loggedin_user = $this->session->userdata('login_info');
-  	$this->load->view('edit',['user_info'=>$loggedin_user]);
   }
 
   function updateUserDescription($new_profile) {
-    // var_dump($new_profile);
-    // die();
     $query = " UPDATE users SET description='" . $new_profile["description"]. "' WHERE id=" .$new_profile["id"]. ";";
     $this->db->query($query);
-    //and redirect back to edit profile
-    $loggedin_user = $this->session->userdata('login_info');
-  	$this->load->view('edit',['user_info'=>$loggedin_user]);
+  }
+
+  function adminUpdateProfile($edited_by_admin) {
+    $query = " UPDATE users SET email='" . $edited_by_admin["email"]. "', first_name='" . $edited_by_admin["first_name"]. "', last_name='".$edited_by_admin["last_name"]."', user_level='".$edited_by_admin['user_level']."' WHERE id=" .$edited_by_admin["id"]. ";";
+    $this->db->query($query);
   }
 
 }

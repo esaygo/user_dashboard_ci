@@ -50,7 +50,7 @@
          <?php foreach ($info_users as $user) { ?>
          <tr>
            <td><?= $user['id'];?></td>
-           <td><a href="#"><?= $user['first_name'];?><?= $user['last_name'];?></a></td>
+           <td><a href="/user_dashboard/users/adminEditUser/<?= $user['id']; ?>"><?= $user['first_name'];?> <?= $user['last_name'];?></a></td>
            <td><?= $user['email'];?></td>
            <td><?= $user['created_at'];?></td>
            <td><?= $user['user_level'];?></td>
