@@ -40,13 +40,18 @@
 
 $route['default_controller'] = 'users';
 $route['signin'] = 'users/signin';
-$route['process_signin'] = 'users/process_signin';
+$route['process_signin'] = 'users/process_signin/';
 $route['register'] = 'users/register';
-$route['process_register'] = 'users/process_register';
-$route['edit'] = 'users/edit';
+$route['process_register'] = 'users/process_register/';
+$route['new'] = 'users/new_user';
+$route['editUserProfile'] = 'users/editUserProfile';
+$route['editUserPassword'] = 'users/editUserPassword';
+$route['editUserDescription'] = 'users/editUserDescription';
 $route['confirm_remove'] = 'users/confirm_remove';
 $route['remove'] = 'users/remove';
 $route['logout'] = 'users/logout';
+$route['edit/(:num)'] = 'users/edit_own_profile/$1';
+// $route['dashboard/(:any)'] = "users/dashboard/$1";
 $route[''] = 'users/index';
 
 

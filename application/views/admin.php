@@ -21,18 +21,19 @@
    <div class="nav-wrapper-container">
      <a href="#" class="brand-logo">Test App</a>
      <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a href="#">Home</a></li>
-       <li><a href="#">Sign in</a></li>
+       <li><a href="users">Log off</a></li>
      </ul>
    </div>
  </nav>
-
+ <div class="row">
+<h4>Manage users<h4>
+</div>
  <div class="row">
     <form class="col s4>
       <div class="row">
- <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Add new</a>
- </div>
- </form>
+        <a href="new" class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Add new</a>
+      </div>
+    </form>
  </div>
  <div class="row">
    <div class="col l6 s12">
@@ -54,8 +55,8 @@
            <td><?= $user['created_at'];?></td>
            <td><?= $user['user_level'];?></td>
            <td>
-             <a href="edit"><img src="assets/img/edit_icon.gif"></a>
-             <a href="confirm_remove"><img src="assets/img/delete_icon.gif"></a>
+             <a href="edit"><img src="assets/img/edit_icon.gif" alt="edit"></a>
+             <a href="confirm_remove"><img src="assets/img/delete_icon.gif" alt="delete"></a>
             <td/>
          </tr>
          <?php } ?>

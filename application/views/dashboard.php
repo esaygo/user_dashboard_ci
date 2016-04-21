@@ -7,20 +7,24 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
-  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="/user_dashboard/assets/css/materialize.min.css" media="screen,projection"/>
+  <link href="/user_dashboard/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
+
   <nav class="light-blue lighten-1" role="navigation>
    <div class="nav-wrapper-container">
      <a href="#" class="brand-logo">Test App</a>
      <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a href="users">Home</a></li>
-       <li><a href="signin">Sign in</a></li>
+      <li><a href="logout">Log off</a></li>
      </ul>
    </div>
  </nav>
  <div class="row">
+   <?php if ($this->session->flashdata('edit_error')) {
+     echo $this->session->flashdata('edit_error');
+   }?>
+   <h5>All users<h5>
    <div class="col l6 s12">
      <table>
        <thead>
@@ -31,13 +35,15 @@
          <th>user_level</th>
        <thead>
        <tbody>
+         <?php foreach ($info_users as $user) { ?>
          <tr>
-           <td>1</td>
-           <td><a href="#">Michael Choi</a></td>
-           <td>micheal@village88.com</td>
-           <td>Dec 24th 2012</td>
-           <td>admin</td>
+           <td><?= $user['id'];?></td>
+           <td><a href="edit/<?= $user['id']; ?>"><?= $user['first_name'];?><?= $user['last_name'];?></a></td>
+           <td><?= $user['email'];?></td>
+           <td><?= $user['created_at'];?></td>
+           <td><?= $user['user_level'];?></td>
          </tr>
+         <?php } ?>
 
        </tbody>
      </table>
@@ -57,7 +63,7 @@
   <!--  Scripts-->
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-  <script src="assets/js/init.js"></script>
+  <script src="/assets/js/init.js"></script>
 
   </body>
 </html>

@@ -15,8 +15,7 @@
     <div class="nav-wrapper-container">
       <a href="#" class="brand-logo">Test App</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Sign in</a></li>
+        <li><a href="signin">Sign in</a></li>
       </ul>
     </div>
   </nav>
@@ -31,7 +30,6 @@
          <a href="signin" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
        </div>
        <br><br>
-
      </div>
    </div>
    <div class="container">
