@@ -11,8 +11,11 @@
   <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style>
   form {
-    margin-top: 5%;
+    margin-top: 0.5%;
     margin-left: 40%;
+  }
+  table {
+    margin-bottom: 20%;
   }
   </style>
 </head>
@@ -50,19 +53,19 @@
          <?php foreach ($info_users as $user) { ?>
          <tr>
            <td><?= $user['id'];?></td>
-           <td><a href="/user_dashboard/users/adminEditUser/<?= $user['id']; ?>"><?= $user['first_name'];?> <?= $user['last_name'];?></a></td>
+           <td><a href="show"><?= $user['first_name'];?> <?= $user['last_name'];?></a></td>
            <td><?= $user['email'];?></td>
            <td><?= $user['created_at'];?></td>
            <td><?= $user['user_level'];?></td>
            <td>
-             <a href="edit"><img src="assets/img/edit_icon.gif" alt="edit"></a>
+             <a href="/user_dashboard/users/adminEditUser/<?= $user['id']; ?>"><img src="assets/img/edit_icon.gif" alt="edit"></a>
              <a href="confirm_remove"><img src="assets/img/delete_icon.gif" alt="delete"></a>
             <td/>
          </tr>
          <?php } ?>
        </tbody>
      </table>
-     <div class=".row .col.m12" id="login_offset"></div>
+
 </div>
 </div>
 

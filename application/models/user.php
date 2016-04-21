@@ -51,6 +51,9 @@ class User extends CI_Model {
     $query = " UPDATE users SET email='" . $edited_by_admin["email"]. "', first_name='" . $edited_by_admin["first_name"]. "', last_name='".$edited_by_admin["last_name"]."', user_level='".$edited_by_admin['user_level']."' WHERE id=" .$edited_by_admin["id"]. ";";
     $this->db->query($query);
   }
-
+  function adminUpdatePassword($edited_by_admin) {
+    $query = " UPDATE users SET password='" . $edited_by_admin["password"]. "' WHERE id=" .$edited_by_admin["id"]. ";";
+    $this->db->query($query);
+  }
 }
 ?>

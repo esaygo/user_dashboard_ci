@@ -221,11 +221,14 @@ public function adminEditUserInfo() {
 
  	 $this->User->get_updated_user($updated_session['id']);
  	 $this->load->view('admin_edit',['user_info'=>$updated_session]);
-
-
 }
 
 public function adminEditUserPassword() {
+	$edited_by_admin = $this->input->post(NULL, TRUE);
+	$this->User->adminUpdatePassword($edited_by_admin);
+
+	$data = $this->User->get_updated_user($edited_by_admin['id']);
+ 	$this->load->view('admin_edit',['user_info'=>$data]);
 
 }
 
