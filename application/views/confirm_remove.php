@@ -7,8 +7,8 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
-  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="/user_dashboard/assets/css/materialize.min.css" media="screen,projection"/>
+  <link href="/user_dashboard/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation>
@@ -21,15 +21,25 @@
    </div>
  </nav>
  <div class="row">
-         <div class="col s12 m6">
+           <div class="col s12 m6">
            <div class="card blue-grey darken-1">
              <div class="card-content white-text">
                <span class="card-title">Confirm deletion</span>
                <p>Are you sure you want to delete this user?</p>
              </div>
              <div class="card-action">
-               <a href="signin">No</a>
-               <a href="remove">Yes, delete</a>
+               <a onclick="goBack()" id="go_back" href="#">No</a>
+               <script>
+                function goBack() {
+                  window.history.back();
+                }
+              </script>
+               <a href="../remove_user/<?= $id; ?>" >Yes, delete</a>
+                <script>
+                function goBackTwo() {
+                  window.history.go(-2);
+                }
+              </script>
              </div>
            </div>
          </div>

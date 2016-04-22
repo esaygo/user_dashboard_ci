@@ -7,8 +7,8 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/materialize.min.css" media="screen,projection"/>
-  <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="/user_dashboard/assets/css/materialize.min.css" media="screen,projection"/>
+  <link href="/user_dashboard/assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style>
   form {
     margin-top: 0.5%;
@@ -34,7 +34,7 @@
  <div class="row">
     <form class="col s4>
       <div class="row">
-        <a href="new" class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Add new</a>
+        <a href="/user_dashboard/users/new_user" class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Add new</a>
       </div>
     </form>
  </div>
@@ -50,16 +50,17 @@
          <th>actions</th>
        <thead>
        <tbody>
+         
          <?php foreach ($info_users as $user) { ?>
          <tr>
            <td><?= $user['id'];?></td>
-           <td><a href="show"><?= $user['first_name'];?> <?= $user['last_name'];?></a></td>
+           <td><a href="/user_dashboard/users/show/<?php echo $user['id']; ?>"><?= $user['first_name'];?> <?= $user['last_name'];?></a></td>
            <td><?= $user['email'];?></td>
            <td><?= $user['created_at'];?></td>
            <td><?= $user['user_level'];?></td>
            <td>
-             <a href="/user_dashboard/users/adminEditUser/<?= $user['id']; ?>"><img src="assets/img/edit_icon.gif" alt="edit"></a>
-             <a href="confirm_remove"><img src="assets/img/delete_icon.gif" alt="delete"></a>
+             <a href="/user_dashboard/users/adminEditUser/<?= $user['id']; ?>"><img src="/user_dashboard/assets/img/edit_icon.gif" alt="edit"></a>
+             <a href="/user_dashboard/users/confirm_remove/<?= $user['id'];?>"><img src="/user_dashboard/assets/img/delete_icon.gif" alt="delete"></a>
             <td/>
          </tr>
          <?php } ?>

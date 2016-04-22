@@ -42,7 +42,7 @@ public function process_register() {
 
 	 } else {
 		//check if email exists in db
-	 $this->load->model('User');
+	 //$this->load->model('User');
    $new_user = $this->input->post(NULL, TRUE);
 	 $user = $this->User->get_user($new_user);
 
@@ -232,16 +232,51 @@ public function adminEditUserPassword() {
 
 }
 
-public function confirm_remove() {
+public function confirm_remove($id) {
 	//from the admin page - then load the confirmation box
-	$this->load->view('confirm_remove');
+	$this->load->view('confirm_remove', ['id'=>$id]);
 }
 
-public function remove() {
+public function remove_user($id) {
 	//action from confirm_remove
-	echo "deleted";
+$this->User->delete_user($id);
+$info_users = $this->User->get_all_users();
+// var_dump($info_users);
+// die();
+$this->load->view('../views/admin', ['info_users'=> $info_users]);
 }
 
+public function post_message() {
+	$message = $this->input->post();
+	//var_dump($message);
+	//die();
+	$this->User->insert_message($message);
+	$id = $message['wall_user'];
+	$get_user = $this->User->get_updated_user($id);
+	$wall_messages = $this->User->show_messages($id);
+	$this->load->view('show', [
+														'user_info'=> $get_user,
+														'messages'=>$wall_messages
+													]);
+}
+
+public function show($id) {
+	$loggedin_user = $this->session->userdata('login_info');
+	$get_user = $this->User->get_updated_user($id);
+	$wall_messages = $this->User->show_messages($id);
+
+	$this->load->view('show', [
+														'user_info'=> $get_user,
+														'messages'=>$wall_messages
+													]);
+}
+
+public function post_comment() {
+$comment = $this->input->post();
+// var_dump($comment);
+// die();
+$this->User->insert_comment($comment);
+}
 
 public function logout() {
 	if($this->session->userdata()) {

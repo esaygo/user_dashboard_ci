@@ -55,5 +55,33 @@ class User extends CI_Model {
     $query = " UPDATE users SET password='" . $edited_by_admin["password"]. "' WHERE id=" .$edited_by_admin["id"]. ";";
     $this->db->query($query);
   }
+  function delete_user($id) {
+    $query = "DELETE FROM users WHERE id = ?";
+    $values = array($id);
+    $this->db->query($query,$values);
+  }
+
+  function insert_message($message) {
+    $query = 'INSERT INTO messages (content, created_at, updated_at, users_id,creator_id) VALUES (?, NOW(), NOW(), ?, ?)';
+    $values = array($message['message'], $message['wall_user'], $message['loggedin_user']);
+    $this->db->query($query, $values);
+  }
+
+  function show_messages($id) {
+    $query = "SELECT * FROM messages WHERE users_id = ? ";
+    $values = array($id);
+    $user_messages = $this->db->query($query,$values)->result_array();
+    return $user_messages;
+  }
+  function insert_comment($comment) {
+    $query = 'INSERT INTO comments (content, created_at, updated_at, messages_id,users_id) VALUES (?, NOW(), NOW(), ?, ?)';
+    $values = array($comment['comment'], $comment['msg_id'], $comment['loggedin_user']);
+
+    var_dump($comment);
+    // die();
+    var_dump($query);
+    die();
+    $this->db->query($query, $values);
+  }
 }
 ?>
